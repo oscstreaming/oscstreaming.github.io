@@ -3,35 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jacknjellify Hub - Object Show Plus</title>
+    <title>Browse All - Object Show Streaming</title>
     <style>
-        body { background-color: #040714; color: #f9f9f9; font-family: -apple-system, Arial, sans-serif; margin: 0; padding: 40px; }
-        .header { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; }
-        h1 { color: #4ade80; font-size: 2.5rem; margin: 0; font-weight: 900; }
-        .back-link { color: #9ca3af; text-decoration: none; font-weight: bold; }
-        .back-link:hover { color: white; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-        .card { background-color: #1a1d29; border: 1px solid #1f2937; border-radius: 8px; overflow: hidden; }
-        .video { position: relative; padding-bottom: 56.25%; height: 0; }
-        .video iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:0; }
-        .meta { padding: 15px; }
-        h3 { margin: 0 0 5px 0; font-size: 1rem; }
+        body { background-color: #040714; color: #f9f9f9; font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif; margin: 0; padding-bottom: 80px; -webkit-font-smoothing: antialiased; }
+        nav { position: sticky; top: 0; z-index: 50; background-color: #040714; padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #1f2937; }
+        .logo { font-size: 1.25rem; font-weight: 900; letter-spacing: 0.1em; color: #00ebfe; text-decoration: none; margin-right: 32px; }
+        .nav-links { display: flex; gap: 24px; }
+        .nav-links a { color: #d1d5db; text-decoration: none; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; }
+        .nav-links a:hover { color: #ffffff; }
+        main { max-width: 1400px; margin: 40px auto 0 auto; padding: 0 40px; }
+        .category-title { font-size: 1.5rem; font-weight: 800; margin: 40px 0 20px 0; letter-spacing: 0.02em; color: #9ca3af; border-left: 4px solid #00ebfe; padding-left: 12px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .video-card { background-color: #1a1d29; border: 1px solid #1f2937; border-radius: 8px; overflow: hidden; transition: border-color 0.2s; }
+        .video-card:hover { border-color: #9ca3af; }
+        .video-wrapper { position: relative; width: 100%; padding-bottom: 56.25%; background-color: #000000; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .video-meta { padding: 12px; }
+        .video-meta h3 { font-size: 0.875rem; font-weight: 700; margin: 0 0 4px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .video-meta p { font-size: 0.75rem; color: #9ca3af; margin: 0; }
     </style>
 </head>
 <body>
+
+    <nav>
+        <div style="display: flex; align-items: center;">
+            <a href="/" class="logo">OBJECT SHOW STREAMING</a>
+            <div class="nav-links">
+                <a href="/">🏠 HOME</a>
+                <a href="/search">🔍 SEARCH</a>
+                <a href="/browse" style="color: #00ebfe;">✨ BROWSE</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- ROW 1: CLASSIC ERA -->
+        <div class="category-title">Classic Era (2010 - 2015)</div>
+        <div class="grid">
+            <div class="video-card">
+                <div class="video-wrapper"><iframe src="https://youtube.com" allowfullscreen></iframe></div>
+                <div class="video-meta"><h3>BFDI Episode 1</h3><p>jacknjellify</p></div>
+            </div>
+            <div class="video-card">
+                <div class="video-wrapper"><iframe src="https://youtube.com" allowfullscreen></iframe></div>
+                <div class="video-meta"><h3>Inanimate Insanity Season 1 Ep 1</h3><p>AnimationEpic</p></div>
+            </div>
+        </div>
+
+        <!-- ROW 2: MODERN ERA -->
+        <div class="category-title">Modern Era (2016 - Present)</div>
+        <div class="grid">
+            <div class="video-card">
+                <div class="video-wrapper"><iframe src="https://youtube.com" allowfullscreen></iframe></div>
+                <div class="video-meta"><h3>BFB 1: Getting Teardrop to Talk</h3><p>jacknjellify</p></div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
+Use code with caution.3. jacknjellify.html & animationepic.html (The Studio Channel Templates)Both studio pages use this exact setup. If you need to make animationepic.html, simply copy this block, change the green header (color: #4ade80;) to blue (color: #60a5fa;), and change the main title text from jacknjellify to AnimationEpic.html<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jacknjellify - Object Show Streaming</title>
+    <style>
+        body { background-color: #040714; color: #f9f9f9; font-family: -apple-system, Arial, sans-serif; margin: 0; padding: 40px; -webkit-font-smoothing: antialiased; }
+        .header { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; border-bottom: 1px solid #1f2937; padding-bottom: 20px; }
+        h1 { color: #4ade80; font-size: 2.5rem; margin: 0; font-weight: 900; letter-spacing: -0.02em; }
+        .back-link { color: #9ca3af; text-decoration: none; font-weight: bold; font-size: 1.1rem; transition: color 0.2s; }
+        .back-link:hover { color: white; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+        .video-card { background-color: #1a1d29; border: 1px solid #1f2937; border-radius: 8px; overflow: hidden; transition: border-color 0.2s; }
+        .video-card:hover { border-color: #9ca3af; }
+        .video-wrapper { position: relative; width: 100%; padding-bottom: 56.25%; background-color: #000000; }
+        .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:0; }
+        .video-meta { padding: 12px; }
+        h3 { margin: 0 0 4px 0; font-size: 0.9rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        p { margin: 0; font-size: 0.75rem; color: #9ca3af; }
+    </style>
+</head>
+<body>
+
     <div class="header">
-        <a href="index.html" class="back-link">← Home</a>
+        <a href="/" class="back-link">← Home</a>
         <h1>jacknjellify Studio</h1>
     </div>
+
+    <!-- STUDIO GRID: Drop show-specific cards here -->
     <div class="grid">
-        <div class="card">
-            <div class="video"><iframe src="https://youtube.com" allowfullscreen></iframe></div>
-            <div class="meta"><h3>BFDI 1: Take the Plunge</h3></div>
-        </div>
-        <div class="card">
-            <div class="video"><iframe src="https://youtube.com" allowfullscreen></iframe></div>
-            <div class="meta"><h3>BFB 1: Getting Teardrop to Talk</h3></div>
+        <div class="video-card">
+            <div class="video-wrapper">
+                <iframe src="https://youtube.com" allowfullscreen></iframe>
+            </div>
+            <div class="video-meta">
+                <h3>BFDI Episode 1: Take the Plunge</h3>
+                <p>jacknjellify</p>
+            </div>
         </div>
     </div>
+
 </body>
 </html>
