@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Object Show Plus</title>
     <style>
-        /* BASE PREMIUM STYLING (Disney+ Dark Mode Theme) */
         body {
             background-color: #040714;
             color: #f9f9f9;
@@ -14,8 +13,6 @@
             padding-bottom: 80px;
             -webkit-font-smoothing: antialiased;
         }
-
-        /* NAVIGATION BAR */
         nav {
             position: sticky;
             top: 0;
@@ -25,7 +22,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-b: 1px solid #1f2937;
+            border-bottom: 1px solid #1f2937;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
         }
         .logo {
@@ -67,15 +64,11 @@
         .sign-in-btn:hover {
             background-color: #3b82f6;
         }
-
-        /* CONTAINER LAYOUT */
         main {
             max-width: 1400px;
             margin: 24px auto 0 auto;
             padding: 0 40px;
         }
-
-        /* HERO BANNER SLIDER */
         .hero-banner {
             position: relative;
             width: 100%;
@@ -100,7 +93,7 @@
         .hero-content {
             position: relative;
             z-index: 10;
-            max-w: 600px;
+            max-width: 600px;
             padding: 40px;
         }
         .badge {
@@ -140,19 +133,6 @@
             transition: background-color 0.2s;
         }
         .play-btn:hover { background-color: #e5e7eb; }
-        .details-btn {
-            background-color: rgba(0,0,0,0.6);
-            color: #ffffff;
-            border: 1px solid #ffffff;
-            font-weight: 700;
-            padding: 10px 24px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .details-btn:hover { background-color: rgba(255,255,255,0.2); }
-
-        /* DISNEY+ STYLE BRAND HUBS */
         .brand-section-title {
             font-size: 0.9rem;
             font-weight: 700;
@@ -167,6 +147,8 @@
             gap: 16px;
             margin-bottom: 48px;
         }
+        
+        /* Turn studio cards into actual clickable links */
         .brand-card {
             background: linear-gradient(180deg, #1a1d29 0%, #0e111a 100%);
             border: 1px solid #374151;
@@ -175,6 +157,8 @@
             text-align: center;
             cursor: pointer;
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+            text-decoration: none;
+            display: block;
             transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s;
         }
         .brand-card:hover {
@@ -186,8 +170,6 @@
         .brand-title-ae { font-size: 1.5rem; font-weight: 800; color: #60a5fa; }
         .brand-title-cm { font-size: 1.5rem; font-weight: 800; color: #c084fc; }
         .brand-subtitle { font-size: 0.65rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
-
-        /* HORIZONTAL SCROLLING ROWS */
         .row-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; letter-spacing: 0.02em; }
         .video-row {
             display: flex;
@@ -195,10 +177,8 @@
             overflow-x: auto;
             padding-bottom: 16px;
         }
-        /* Hide scrollbars */
         .video-row::-webkit-scrollbar { display: none; }
         .video-row { -ms-overflow-style: none; scrollbar-width: none; }
-
         .video-card {
             min-width: 300px;
             background-color: #1a1d29;
@@ -215,7 +195,7 @@
         .video-wrapper {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%;
             background-color: #000000;
         }
         .video-wrapper iframe {
@@ -232,55 +212,54 @@
     <!-- NAVIGATION BAR -->
     <nav>
         <div style="display: flex; align-items: center;">
-            <a href="#" class="logo">OBJECT+</a>
+            <a href="index.html" class="logo">OBJECT+</a>
             <div class="nav-links">
-                <a href="#">🏠 HOME</a>
-                <a href="#">🔍 SEARCH</a>
-                <a href="#">✨ BROWSE</a>
+                <!-- CHANGED: Now looking for real internal page files -->
+                <a href="index.html">🏠 HOME</a>
+                <a href="search.html">🔍 SEARCH</a>
+                <a href="browse.html">✨ BROWSE</a>
             </div>
         </div>
-        <button class="sign-in-btn" onclick="alert('Sign-In Menu Coming Soon!')">Sign In</button>
+        <!-- CHANGED: Directs the user to a dedicated login file -->
+        <button class="sign-in-btn" onclick="window.location.href='login.html'">Sign In</button>
     </nav>
 
-    <!-- CONTENT WRAPPER -->
     <main>
-
         <!-- 1. HERO BANNER -->
         <div class="hero-banner">
             <div class="hero-bg"></div>
             <div class="hero-content">
                 <span class="badge">Trending</span>
                 <h1>Battle for Dream Island</h1>
-                <p>The iconic animated competition series where unique object characters battle it out for luxury prizes. Stream every single episode right here.</p>
+                <p>The iconic animated competition series. Stream every single episode right here.</p>
                 <div class="hero-btns">
-                    <button class="play-btn">▶ PLAY</button>
-                    <button class="details-btn">DETAILS</button>
+                    <!-- CHANGED: Automatically scrolls down to the video row when clicked -->
+                    <button class="play-btn" onclick="document.getElementById('video-section').scrollIntoView({behavior: 'smooth'})">▶ PLAY</button>
                 </div>
             </div>
         </div>
 
-        <!-- 2. BRAND HUBS (The Custom Studio Buttons) -->
+        <!-- 2. BRAND HUBS -->
         <div class="brand-section-title">Studios</div>
         <div class="brand-grid">
-            <div class="brand-card">
+            <!-- CHANGED: Cards are now clickable <a> links targeting brand-specific layout files -->
+            <a href="jacknjellify.html" class="brand-card">
                 <div class="brand-title-jn">jacknjellify</div>
                 <div class="brand-subtitle">BFDI & BFB Series</div>
-            </div>
-            <div class="brand-card">
+            </a>
+            <a href="animationepic.html" class="brand-card">
                 <div class="brand-title-ae">AnimationEpic</div>
                 <div class="brand-subtitle">Inanimate Insanity</div>
-            </div>
-            <div class="brand-card">
+            </a>
+            <a href="community.html" class="brand-card">
                 <div class="brand-title-cm">Community</div>
                 <div class="brand-subtitle">Fan Content Hub</div>
-            </div>
+            </a>
         </div>
 
         <!-- 3. SLIDING VIDEO ROWS -->
-        <div class="row-title">Popular Series</div>
+        <div class="row-title" id="video-section">Popular Series</div>
         <div class="video-row">
-            
-            <!-- Video 1 -->
             <div class="video-card">
                 <div class="video-wrapper">
                     <iframe src="https://youtube.com" allowfullscreen></iframe>
@@ -290,7 +269,9 @@
                     <p>jacknjellify</p>
                 </div>
             </div>
-
-            <!-- Video 2 -->
             <div class="video-card">
                 <div class="video-wrapper">
+                    <iframe src="https://youtube.com" allowfullscreen></iframe>
+                </div>
+                <div class="video-meta">
+                    <h3>Inanimate Insanity Season 1 Episode 1</h3>
