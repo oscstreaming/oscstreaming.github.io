@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jacknjellify Hub - Object Show Plus</title>
+    <style>
+        body { background-color: #040714; color: #f9f9f9; font-family: -apple-system, Arial, sans-serif; margin: 0; padding: 40px; }
+        .header { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; }
+        h1 { color: #4ade80; font-size: 2.5rem; margin: 0; font-weight: 900; }
+        .back-link { color: #9ca3af; text-decoration: none; font-weight: bold; }
+        .back-link:hover { color: white; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .card { background-color: #1a1d29; border: 1px solid #1f2937; border-radius: 8px; overflow: hidden; }
+        .video { position: relative; padding-bottom: 56.25%; height: 0; }
+        .video iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:0; }
+        .meta { padding: 15px; }
+        h3 { margin: 0 0 5px 0; font-size: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="back-link">← Home</a>
+        <h1>jacknjellify Studio</h1>
+    </div>
+    <div class="grid">
+        <div class="card">
+            <div class="video"><iframe src="https://youtube.com" allowfullscreen></iframe></div>
+            <div class="meta"><h3>BFDI 1: Take the Plunge</h3></div>
+        </div>
+        <div class="card">
+            <div class="video"><iframe src="https://youtube.com" allowfullscreen></iframe></div>
+            <div class="meta"><h3>BFB 1: Getting Teardrop to Talk</h3></div>
+        </div>
+    </div>
+</body>
+</html>
