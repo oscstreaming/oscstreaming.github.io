@@ -97,15 +97,29 @@
         <a href="/" class="back-btn">← Back to Home</a>
     </div>
 
-    <!-- Firebase System Modules with fixed direct file paths -->
+    <!-- UI TOGGLE SCRIPT: Standard JavaScript that runs instantly -->
+    <script>
+        function toggleForms() {
+            var loginDiv = document.getElementById('loginSection');
+            var signupDiv = document.getElementById('signupSection');
+            if (loginDiv.classList.contains('hidden')) {
+                loginDiv.classList.remove('hidden');
+                signupDiv.classList.add('hidden');
+            } else {
+                loginDiv.classList.add('hidden');
+                signupDiv.classList.remove('hidden');
+            }
+        }
+    </script>
+
+    <!-- FIREBASE AUTH SYSTEM SCRIPT -->
     <script type="module">
         import { initializeApp } from "https://gstatic.com";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://gstatic.com";
 
-        // Your verified configuration credentials remain preserved
         const firebaseConfig = {
             apiKey: "AIzaSyDL2ZySqmdhrGO0FfEi2bMcAYbKTrhDuaQ",
-            authDomain: "oscstreamingservice.firebaseapp.com",
+            authDomain: "://firebaseapp.com",
             projectId: "oscstreamingservice",
             storageBucket: "oscstreamingservice.firebasestorage.app",
             messagingSenderId: "392974088778",
@@ -115,13 +129,7 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // Core UI Navigation Toggle mounted globally
-        window.toggleForms = function() {
-            document.getElementById('loginSection').classList.toggle('hidden');
-            document.getElementById('signupSection').classList.toggle('hidden');
-        }
-
-        // Email Account Registration Processing mounted globally
+        // Map signup logic directly onto the window scope
         window.handleSignup = function() {
             const email = document.getElementById('signupEmail').value;
             const password = document.getElementById('signupPassword').value;
@@ -136,7 +144,7 @@
                 .catch((err) => alert(err.message));
         }
 
-        // Email Account Logins Processing mounted globally
+        // Map login logic directly onto the window scope
         window.handleLogin = function() {
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
