@@ -97,7 +97,7 @@
         <a href="/" class="back-btn">← Back to Home</a>
     </div>
 
-    <!-- UI TOGGLE SCRIPT: Standard JavaScript that runs instantly -->
+    <!-- UI TOGGLE SCRIPT -->
     <script>
         function toggleForms() {
             var loginDiv = document.getElementById('loginSection');
@@ -129,34 +129,45 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // Map signup logic directly onto the window scope
+        // Fixed signup registration trigger linked cleanly to global window space
         window.handleSignup = function() {
             const email = document.getElementById('signupEmail').value;
             const password = document.getElementById('signupPassword').value;
             
-            if(!email || !password) return alert("Please fill out your required email and password.");
+            if(!email || !password) {
+                return alert("Please fill out your required email and password.");
+            }
+            if(password.length < 6) {
+                return alert("Password must be at least 6 characters long.");
+            }
             
             createUserWithEmailAndPassword(auth, email, password)
                 .then(() => { 
                     alert("🎉 Account created successfully! Welcome to Object Show Streaming."); 
                     window.location.href = "/"; 
                 })
-                .catch((err) => alert(err.message));
+                .catch((err) => {
+                    alert("Error: " + err.message);
+                });
         }
 
-        // Map login logic directly onto the window scope
+        // Fixed login check trigger linked cleanly to global window space
         window.handleLogin = function() {
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
             
-            if(!email || !password) return alert("Please enter your login details.");
+            if(!email || !password) {
+                return alert("Please enter your login details.");
+            }
             
             signInWithEmailAndPassword(auth, email, password)
                 .then(() => { 
                     alert("👋 Welcome back!"); 
                     window.location.href = "/"; 
                 })
-                .catch((err) => alert("Login Failed: " + err.message));
+                .catch((err) => {
+                    alert("Login Failed: " + err.message);
+                });
         }
     </script>
 </body>
