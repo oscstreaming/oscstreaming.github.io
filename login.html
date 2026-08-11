@@ -61,7 +61,7 @@
         .hidden { display: none; }
     </style>
 
-    <!-- Load Global Firebase Scripts -->
+    <!-- CRITICAL FIX: These two lines load the background engine codes from Google -->
     <script src="https://gstatic.com"></script>
     <script src="https://gstatic.com"></script>
 </head>
@@ -85,7 +85,6 @@
         <div id="signupSection" class="hidden">
             <h2>Create Account</h2>
             
-            <!-- Added Username field -->
             <label>Username</label>
             <input type="text" id="signupUsername" placeholder="e.g. CoinyFan123">
 
@@ -102,18 +101,18 @@
         <a href="/" class="back-btn">← Back to Home</a>
     </div>
 
-    <!-- STANDARD JAVASCRIPT GLOBAL SCRIPT BLOCK -->
+    <!-- STANDARD INTERACTIVE LOGIC SCRIPT -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyDL2ZySqmdhrGO0FfEi2bMcAYbKTrhDuaQ",
-            authDomain: "oscstreamingservice.firebaseapp.com",
+            authDomain: "://firebaseapp.com",
             projectId: "oscstreamingservice",
             storageBucket: "oscstreamingservice.firebasestorage.app",
             messagingSenderId: "392974088778",
-            appId: "1:392974088778:web:b69c66acba7ed4ebf144b3",
-            measurementId: "G-M3LL6RNC89"
+            appId: "1:392974088778:web:b69c66acba7ed4ebf144b3"
         };
 
+        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
 
@@ -129,7 +128,6 @@
             }
         }
 
-        // Updated registration logic to handle usernames
         function handleSignup() {
             const username = document.getElementById('signupUsername').value.trim();
             const email = document.getElementById('signupEmail').value.trim();
@@ -144,13 +142,12 @@
             
             auth.createUserWithEmailAndPassword(email, password)
                 .then((userCredential) => {
-                    // Update user's profile display name with the username
                     return userCredential.user.updateProfile({
                         displayName: username
                     });
                 })
                 .then(() => {
-                    alert("🎉 Account created successfully! Welcome to Object Show Streaming, " + username + "."); 
+                    alert("🎉 Account created successfully! Welcome, " + username + "."); 
                     window.location.href = "/"; 
                 })
                 .catch((err) => {
