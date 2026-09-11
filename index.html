@@ -3,275 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Object Show Streaming</title>
+    <title>OSC Stream - Object Show Hub</title>
     <style>
+        /* Modern Dark Mode Streaming Style */
         body {
-            background-color: #040714;
-            color: #f9f9f9;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding-bottom: 80px;
-            -webkit-font-smoothing: antialiased;
-        }
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background-color: #040714;
-            padding: 16px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid #1f2937;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
-        }
-        .logo {
-            font-size: 1.25rem;
-            font-weight: 900;
-            letter-spacing: 0.1em;
-            color: #00ebfe;
-            text-decoration: none;
-            margin-right: 32px;
-        }
-        .nav-links {
-            display: flex;
-            gap: 24px;
-        }
-        .nav-links a {
-            color: #d1d5db;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            transition: color 0.2s;
-        }
-        .nav-links a:hover {
+            background-color: #141414;
             color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
         }
-        .sign-in-btn {
-            background-color: #2563eb;
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            border-radius: 4px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: background-color 0.2s;
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #E50914; /* Streaming red accent */
         }
-        .sign-in-btn:hover {
-            background-color: #3b82f6;
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: #E50914;
         }
-        main {
-            max-width: 1400px;
-            margin: 24px auto 0 auto;
-            padding: 0 40px;
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
-        .hero-banner {
-            position: relative;
-            width: 100%;
-            height: 350px;
+
+        /* Active Video Theater Player Section */
+        .video-player-container {
+            background-color: #000000;
             border-radius: 8px;
             overflow: hidden;
-            border: 1px solid #1f2937;
-            background: linear-gradient(90deg, #111827 0%, #000000 100%);
-            display: flex;
-            align-items: center;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             margin-bottom: 40px;
         }
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            background-image: url('https://unsplash.com');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.3;
-        }
-        .hero-content {
+
+        .responsive-iframe {
             position: relative;
-            z-index: 10;
-            max-width: 600px;
-            padding: 40px;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
         }
-        .badge {
-            background-color: #eab308;
-            color: #000000;
-            font-size: 0.7rem;
-            font-weight: 900;
-            padding: 4px 8px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+
+        .responsive-iframe iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
-        .hero-content h1 {
-            font-size: 2.5rem;
-            font-weight: 900;
-            margin: 12px 0;
-            letter-spacing: -0.02em;
+
+        .player-info {
+            padding: 15px;
+            background-color: #1f1f1f;
         }
-        .hero-content p {
-            font-size: 0.95rem;
-            color: #d1d5db;
-            line-height: 1.5;
-            margin-bottom: 24px;
-        }
-        .hero-btns {
-            display: flex;
-            gap: 16px;
-        }
-        .play-btn {
-            background-color: #ffffff;
-            color: #000000;
-            font-weight: 700;
-            border: none;
-            padding: 10px 24px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .play-btn:hover { background-color: #e5e7eb; }
-        .brand-section-title {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #9ca3af;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 16px;
-        }
-        .brand-grid {
+
+        /* Show Grid Catalog Layout */
+        .show-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 16px;
-            margin-bottom: 48px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
         }
-        
-        /* Turn studio cards into actual clickable links */
-        .brand-card {
-            background: linear-gradient(180deg, #1a1d29 0%, #0e111a 100%);
-            border: 1px solid #374151;
-            border-radius: 8px;
-            padding: 24px;
-            text-align: center;
-            cursor: pointer;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
-            text-decoration: none;
-            display: block;
-            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s;
-        }
-        .brand-card:hover {
-            transform: scale(1.05);
-            border-color: #f9f9f9;
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);
-        }
-        .brand-title-jn { font-size: 1.5rem; font-weight: 800; color: #4ade80; }
-        .brand-title-ae { font-size: 1.5rem; font-weight: 800; color: #60a5fa; }
-        .brand-title-cm { font-size: 1.5rem; font-weight: 800; color: #c084fc; }
-        .brand-subtitle { font-size: 0.65rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
-        .row-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; letter-spacing: 0.02em; }
-        .video-row {
-            display: flex;
-            gap: 16px;
-            overflow-x: auto;
-            padding-bottom: 16px;
-        }
-        .video-row::-webkit-scrollbar { display: none; }
-        .video-row { -ms-overflow-style: none; scrollbar-width: none; }
-        .video-card {
-            min-width: 300px;
-            background-color: #1a1d29;
-            border: 1px solid #1f2937;
+
+        .show-card {
+            background-color: #1f1f1f;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2);
-            transition: border-color 0.2s, transform 0.2s;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            border: 1px solid #333;
         }
-        .video-card:hover {
-            border-color: #9ca3af;
-            transform: translateY(-2px);
+
+        .show-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4);
+            border-color: #E50914;
         }
-        .video-wrapper {
-            position: relative;
+
+        .show-thumbnail {
             width: 100%;
-            padding-bottom: 56.25%;
-            background-color: #000000;
+            height: 160px;
+            object-fit: cover;
+            background-color: #333;
         }
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%; border: 0;
+
+        .show-details {
+            padding: 15px;
         }
-        .video-meta { padding: 12px; }
-        .video-meta h3 { font-size: 0.875rem; font-weight: 700; margin: 0 0 4px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .video-meta p { font-size: 0.75rem; color: #9ca3af; margin: 0; }
+
+        .show-title {
+            margin: 0 0 5px 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .show-creator {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGATION BAR -->
-    <nav>
-        <div style="display: flex; align-items: center;">
-            <a href="index.html" class="logo">OSC Streaming</a>
-            <div class="nav-links">
-                <!-- CHANGED: Now looking for real internal page files -->
-                <a href="index.html">🏠 HOME</a>
-                <a href="search.html">🔍 SEARCH</a>
-                <a href="browse.html">✨ BROWSE</a>
-            </div>
-        </div>
-        <!-- CHANGED: Directs the user to a dedicated login file -->
-        <button class="sign-in-btn" onclick="window.location.href='login.html'">Sign In</button>
-    </nav>
+    <header>
+        <h1>OBJECT STREAM Hub</h1>
+        <p>A safe, ad-free place to stream community Object Shows</p>
+    </header>
 
-    <main>
-        <!-- 1. HERO BANNER -->
-        <div class="hero-banner">
-            <div class="hero-bg"></div>
-            <div class="hero-content">
-                <span class="badge">Trending</span>
-                <h1>Battle for Dream Island</h1>
-                <p>The iconic animated competition series. Stream every single episode right here.</p>
-                <div class="hero-btns">
-                    <!-- CHANGED: Automatically scrolls down to the video row when clicked -->
-                    <button class="play-btn" onclick="document.getElementById('video-section').scrollIntoView({behavior: 'smooth'})">▶ PLAY</button>
-                </div>
+    <div class="container">
+        
+        <!-- THEATER PLAYER (Updates automatically when a card below is clicked) -->
+        <div class="video-player-container">
+            <div class="responsive-iframe">
+                <!-- Uses standard YouTube embed URL structure -->
+                <iframe id="mainPlayer" src="https://youtube.com" allowfullscreen></iframe>
+            </div>
+            <div class="player-info">
+                <h2 id="playerTitle" style="margin:0;">Select a show below to start watching!</h2>
             </div>
         </div>
 
-        <!-- 2. BRAND HUBS -->
-        <div class="brand-section-title">Studios</div>
-        <div class="brand-grid">
-            <!-- CHANGED: Cards are now clickable <a> links targeting brand-specific layout files -->
-            <a href="jacknjellify.html" class="brand-card">
-                <div class="brand-title-jn">jacknjellify</div>
-                <div class="brand-subtitle">BFDI & BFB Series</div>
-            </a>
-            <a href="animationepic.html" class="brand-card">
-                <div class="brand-title-ae">AnimationEpic</div>
-                <div class="brand-subtitle">Inanimate Insanity</div>
-            </a>
-            <a href="community.html" class="brand-card">
-                <div class="brand-title-cm">Community</div>
-                <div class="brand-subtitle">Fan Content Hub</div>
-            </a>
-        </div>
-
-        <!-- 3. SLIDING VIDEO ROWS -->
-        <div class="row-title" id="video-section">Popular Series</div>
-        <div class="video-row">
-            <div class="video-card">
-                <div class="video-wrapper">
-                    <iframe src="https://youtube.com" allowfullscreen></iframe>
-                </div>
-                <div class="video-meta">
-                    <h3>BFDI Episode 1: Take the Plunge</h3>
-                    <p>jacknjellify</p>
+        <h2 style="border-left: 4px solid #E50914; padding-left: 10px; margin-bottom: 20px;">Discover Shows</h2>
+        
+        <!-- CATALOG GRID -->
+        <div class="show-grid">
+            
+            <!-- SHOW CARD 1 -->
+            <div class="show-card" onclick="changeVideo('https://youtube.com', 'Battle for Dream Island - Episode 1')">
+                <img class="show-thumbnail" src="https://youtube.com" alt="BFDI Thumbnail">
+                <div class="show-details">
+                    <p class="show-title">Battle for Dream Island</p>
+                    <p class="show-creator">By jacknjellify</p>
                 </div>
             </div>
-            <div class="video-card">
-                <div class="video-wrapper">
-                    <iframe src="https://youtube.com" allowfullscreen></iframe>
+
+            <!-- SHOW CARD 2 -->
+            <div class="show-card" onclick="changeVideo('https://youtube.com', 'Inanimate Insanity - Episode 1')">
+                <img class="show-thumbnail" src="https://youtube.com" alt="II Thumbnail">
+                <div class="show-details">
+                    <p class="show-title">Inanimate Insanity</p>
+                    <p class="show-creator">By AnimationEpic</p>
                 </div>
-                <div class="video-meta">
-                    <h3>Inanimate Insanity Season 1 Episode 1</h3>
+            </div>
+
+            <!-- Add more show cards here following the exact same structure! -->
+
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT FOR STREAMING CONTROLS -->
+    <script>
+        function changeVideo(embedUrl, showTitle) {
+            // Changes the iframe source link to the new show
+            document.getElementById('mainPlayer').src = embedUrl;
+            // Updates the visible title text underneath the theater player
+            document.getElementById('playerTitle').innerText = showTitle;
+            // Smoothly scrolls back up to the top player if the user is deep in the catalog
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+
+</body>
+</html>
